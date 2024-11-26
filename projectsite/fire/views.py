@@ -8,6 +8,7 @@ from django.db.models import Count
 from datetime import datetime
 
 
+
 class HomePageView(ListView):
     model = Locations
     context_object_name = 'home'
@@ -42,3 +43,25 @@ def PieCountbySeverity(request):
 
     return JsonResponse(data)
 
+def LineCountbyMonth(request):
+    current_year = datetime.now().year
+    result = {month: 0 for month in range(1, 13)}  # Initialize the result dict for each month
+
+    # Fetch incidents for the current year
+    incidents_per_month = Incident.objects.filter(date_time__year=current_year).values_list('date_time', flat=True)
+
+    # Counting the number of incidents per month
+    for date_time in incidents_per_month:
+        month = date_time.month
+        result[month] += 1  # Increment the count for the corresponding month
+
+    # If you want to convert month numbers to month names, you can use a dictionary mapping
+    month_names = {
+        1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
+        7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+    }
+
+    # Map month numbers to month names
+    result_with_month_names = {month_names[month]: count for month, count in result.items()}
+
+    return JsonResponse(result_with_month_names)
