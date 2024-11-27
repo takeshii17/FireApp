@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Dashboard</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Maps</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Stations</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-transparent">
+                <div class="card-header">
+                    <h4 class="card-title text-center">Fire Incidents</h4>
+                    <p class="card-category text-center">
+                        Looks great on any resolution. Made by our
+                        friends from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.
+                    </p>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <!-- Dropdown for city filtering -->
+                        <div class="form-group">
+                            <label for="cityFilter">Filter by City:</label>
+                            <select id="cityFilter" class="form-control">
+                                <option value="">Show All</option>
+                                <option value="Rio Tuba">Rio Tuba</option>
+                                <option value="Brooke's Point">Brooke's Point</option>
+                                <option value="Quezon">Quezon</option>
+                            </select>
+                        </div>
+                        <div id="map" style="width: 100%; height: 400px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([9.81644, 118.72239], 13);
+
+    var fireIcon = L.icon({
+        iconUrl: "{% static 'img/fire.png' %}",
+        iconSize: [50, 50],
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    var markers = [];
+    var markerData = [
+        {latitude: 8.534562, longitude: 117.432493, name: "Rio Tuba"},
+        {latitude: 8.778739, longitude: 117.836462, name: "Brooke's Point"},
+        {latitude: 9.218536, longitude: 117.937261, name: "Quezon"}
+    ];
+
+    // Add markers to the map
+    function addMarkers(data) {
+        markers.forEach(function (marker) {
+            map.removeLayer(marker);
+        });
+        markers = [];
+        data.forEach(function (item) {
+            var latitude = parseFloat(item.latitude);
+            var longitude = parseFloat(item.longitude);
+            var marker = L.marker([latitude, longitude], { icon: fireIcon }).addTo(map);
+            marker.bindPopup(item.name);
+            markers.push(marker);
+        });
+    }
+
+    // Initial marker population
+    addMarkers(markerData);
+
+    // Filter functionality
+    document.getElementById('cityFilter').addEventListener('change', function () {
+        var selectedCity = this.value;
+        if (selectedCity) {
+            var filteredData = markerData.filter(function (item) {
+                return item.name === selectedCity;
+            });
+            addMarkers(filteredData);
+        } else {
+            addMarkers(markerData);
+        }
+    });
+</script>
+{% endblock %}
