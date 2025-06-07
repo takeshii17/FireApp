@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}FireApp{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="{% static 'js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Lato:300,400,700,900"] },
+        custom: { families: ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["{% static 'css/fonts.min.css' %}"] },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/atlantis.min.css' %}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main-header">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="purple">
+          <a href="{% url 'home' %}" class="logo">
+            <h1 class="my-2 text-white fw-bold">FireApp</h1>
+          </a>
+          <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+              <i class="icon-menu"></i>
+            </span>
+          </button>
+          <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+          <div class="nav-toggle">
+            <button class="btn btn-toggle toggle-sidebar">
+              <i class="icon-menu"></i>
+            </button>
+          </div>
+        </div>
+        <!-- End Logo Header -->
+
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="purple">
+          <div class="container-fluid">
+            <div class="collapse" id="search-nav">
+              
+            </div>
+            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar sidebar-style-2">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <div class="user">
+              <div class="avatar-sm float-left mr-2">
+                <img src="{% static 'img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle" />
+              </div>
+              <div class="info">
+                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                  <span>
+                    Lance
+                    <span class="user-level">Administrator</span>
+                    <span class="caret"></span>
+                  </span>
+                </a>
+                <div class="clearfix"></div>
+
+                <div class="collapse in" id="collapseExample">
+                  <ul class="nav">
+                    <li>
+                      <a href="#profile">
+                        <span class="link-collapse">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#edit">
+                        <span class="link-collapse">Edit Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#settings">
+                        <span class="link-collapse">Settings</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ul class="nav nav-primary">
+              <li class="nav-item">
+                <a href="{% url 'home' %}">
+                  <i class="fas fa-home"></i>
+                  <span class="sub-item">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Navigation</h4>
+              </li>
+              <li class="nav-item">
+                <a data-toggle="collapse" href="#base">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Models</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="base">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{% url 'locations' %}">
+                        <span class="sub-item">Locations</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'incident' %}">
+                        <span class="sub-item">Incidents</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'firestation' %}">
+                        <span class="sub-item">Fire Stations</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'firefighters' %}">
+                        <span class="sub-item">Fire Fighters</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'firetruck' %}">
+                        <span class="sub-item">Fire Trucks</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'weatherconditions' %}">
+                        <span class="sub-item">Weather Conditions</span>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </li>
+              
+              
+              
+              <li class="nav-item">
+                <a data-toggle="collapse" href="#maps">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>Maps</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="maps">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{% url 'map-station' %}">
+                        <span class="sub-item">Fire Stations</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'map-incident' %}">
+                        <span class="sub-item">Fire Incidents</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-toggle="collapse" href="#charts">
+                  <i class="far fa-chart-bar"></i>
+                  <p>Charts</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="charts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{% url 'dashboard-chart' %}">
+                        <span class="sub-item">Chart Js</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        <div class="content">
+          {% block content %}
+          {% endblock %}
+     
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="container-fluid">
+            <nav class="pull-left">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.themekita.com"> ThemeKita </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Help </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> Licenses </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright ml-auto">2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a></div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    {% include "includes/messages.html" %}
+    <!--   Core JS Files   -->
+    <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- jQuery UI -->
+    <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chart.js/chart.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+    <script src="{% static 'js/plugin/datatables/datatables.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+    <script src="{% static 'js/atlantis.min.js' %}"></script>
+
+    {% block chart %}
+
+    {% endblock %}
+  </body>
+</html>
