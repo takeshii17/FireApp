@@ -1,0 +1,47 @@
+{
+    "version": "1.1.0",
+    "private": true,
+    "scripts": {
+        "release": "code -r CHANGELOG.md && node -e \"process.stdin.once('data', () => process.exit())\" && yarn bumpp --all package.json javascript-version/package.json typescript-version/package.json"
+    },
+    "devDependencies": {
+        "bumpp": "^8.2.1"
+    },
+    "name": "materio-vuetify-nuxtjs-admin-template-free",
+    "description": "<p align=\"center\"></p>",
+    "main": "index.js",
+    "dependencies": {
+        "braces": "^3.0.3",
+        "cac": "^6.7.14",
+        "call-me-maybe": "^1.0.2",
+        "cross-spawn": "^7.0.6",
+        "fast-glob": "^3.3.3",
+        "fastq": "^1.19.1",
+        "fill-range": "^7.1.1",
+        "glob-parent": "^5.1.2",
+        "is-extglob": "^2.1.1",
+        "is-glob": "^4.0.3",
+        "is-number": "^7.0.0",
+        "isexe": "^2.0.0",
+        "kleur": "^4.1.5",
+        "merge2": "^1.4.1",
+        "micromatch": "^4.0.8",
+        "path-key": "^3.1.1",
+        "picomatch": "^2.3.1",
+        "prompts": "^2.4.2",
+        "queue-microtask": "^1.2.3",
+        "reusify": "^1.1.0",
+        "run-parallel": "^1.2.0",
+        "semver": "^7.7.2",
+        "shebang-command": "^2.0.0",
+        "shebang-regex": "^3.0.0",
+        "sisteransi": "^1.0.5",
+        "string-argv": "^0.3.2",
+        "to-regex-range": "^5.0.1",
+        "type-detect": "^4.1.0",
+        "which": "^2.0.2"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
